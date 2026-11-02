@@ -1,0 +1,81 @@
+/* ===== Invoice sheet (screen + print share the same rules) ===== */
+.paper { width: 210mm; padding: 8mm; background: #fff; margin: 0 auto; box-shadow: 0 1px 6px rgba(0,0,0,.25); }
+.sheet { font: 9pt/1.28 Arial, Helvetica, sans-serif; color: #000; width: 100%; --items-h: 109mm; }
+.sheet, .sheet * { box-sizing: border-box; }
+.sheet .t-row { position: relative; text-align: center; padding: 0 0 1.4mm; height: 7mm; }
+.sheet .t-title { font-weight: bold; font-size: 12pt; }
+.sheet .t-copy { position: absolute; right: 0; top: 1.2mm; font-size: 8.5pt; }
+.sheet .main { border: 1px solid #000; }
+.sheet .r { text-align: right; }
+
+.sheet .head { display: flex; border-bottom: 1px solid #000; min-height: 72mm; }
+.sheet .head-l { width: 50.5%; border-right: 1px solid #000; display: flex; flex-direction: column; }
+.sheet .party { padding: 1mm 1.6mm 1.2mm; }
+.sheet .party.seller { border-bottom: 1px solid #000; }
+.sheet .party.buyer { flex: 1; }
+.sheet .nm { font-size: 9.5pt; }
+.sheet table.kv { border-collapse: collapse; margin-top: .3mm; }
+.sheet table.kv td { padding: 0; vertical-align: top; }
+.sheet table.kv td:first-child { width: 25mm; }
+.sheet .head-r { width: 49.5%; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(6, 9mm) 1fr; }
+.sheet .mc { padding: .7mm 1.6mm; border-bottom: 1px solid #000; overflow: hidden; }
+.sheet .mc:nth-child(even) { border-left: 1px solid #000; }
+.sheet .mc.terms { grid-column: 1 / -1; border-bottom: 0; border-left: 0; }
+.sheet .lb { font-size: 8pt; }
+.sheet .vb { font-weight: bold; font-size: 9pt; white-space: pre-wrap; }
+
+.sheet table.items { width: 100%; border-collapse: collapse; table-layout: fixed; height: var(--items-h); }
+.sheet table.items th, .sheet table.items td { border-left: 1px solid #000; padding: 0 1.4mm; vertical-align: top; overflow-wrap: anywhere; }
+.sheet table.items th:first-child, .sheet table.items td:first-child { border-left: 0; }
+.sheet table.items thead { display: table-header-group; }
+.sheet table.items thead th { border-bottom: 1px solid #000; font-weight: normal; text-align: center; vertical-align: middle; padding: 1.2mm 1.4mm; height: 11mm; }
+.sheet table.items thead th.r { text-align: right; }
+.sheet table.items td.sl { padding-left: .8mm; padding-right: .4mm; }
+.sheet table.items tr.it td { padding-top: .5mm; padding-bottom: .2mm; }
+.sheet table.items tr.it { page-break-inside: avoid; }
+.sheet table.items tr.sp td { height: 4mm; }
+.sheet table.items tr.sub td:last-child { border-top: 1px solid #000; padding-top: .6mm; }
+.sheet table.items td.lab { text-align: right; font-weight: bold; }
+.sheet table.items .less { float: left; font-weight: normal; }
+.sheet table.items tr.fill { height: 100%; }
+.sheet table.items tr.tot td { border-top: 1px solid #000; border-bottom: 1px solid #000; padding-top: 1mm; padding-bottom: 1mm; vertical-align: middle; }
+.sheet table.items tr.tot td.tl { font-weight: normal; }
+.sheet .ta { font-size: 11pt; }
+
+.sheet .keep { break-inside: avoid; page-break-inside: avoid; }
+.sheet .words { padding: .8mm 1.6mm 1.2mm; }
+.sheet .words .w1 { display: flex; justify-content: space-between; font-size: 8.5pt; }
+.sheet .words b { font-size: 10pt; }
+.sheet table.hsn { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.sheet table.hsn th, .sheet table.hsn td { border: 1px solid #000; padding: .5mm 1.4mm; font-size: 8.5pt; }
+.sheet table.hsn th { font-weight: normal; text-align: center; }
+.sheet table.hsn td.l { text-align: left; }
+.sheet table.hsn tr.tr td { font-weight: bold; }
+.sheet table.hsn tr:first-child th { border-top: 1px solid #000; }
+.sheet table.hsn th:first-child, .sheet table.hsn td:first-child { border-left: 0; }
+.sheet table.hsn th:last-child, .sheet table.hsn td:last-child { border-right: 0; }
+.sheet .taxwords { padding: 1mm 1.6mm 1.4mm; border-top: 1px solid #000; }
+.sheet .taxwords b { font-size: 9.5pt; }
+
+.sheet .foot { display: flex; border-top: 1px solid #000; min-height: 29mm; }
+.sheet .foot-l { width: 50%; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 1.6mm 1.2mm; font-size: 8.5pt; }
+.sheet .foot-r { width: 50%; border-left: 1px solid #000; display: flex; flex-direction: column; }
+.sheet .bank { padding: 1mm 1.6mm; flex: 1; }
+.sheet table.kv2 { border-collapse: collapse; }
+.sheet table.kv2 td { padding: 0; vertical-align: top; }
+.sheet table.kv2 td:first-child { width: 34mm; }
+.sheet .sig { border-top: 1px solid #000; padding: .8mm 1.6mm 1mm; height: 20mm; display: flex; flex-direction: column; justify-content: space-between; text-align: right; }
+.sheet .end { text-align: center; padding-top: 2.6mm; font-size: 9pt; line-height: 1.5; }
+
+/* ===== Print ===== */
+@media print {
+  @page { size: A4 portrait; margin: 8mm; }
+  html, body { background: #fff !important; margin: 0 !important; padding: 0 !important; }
+  .no-print { display: none !important; }
+  .layout { display: block !important; }
+  .preview-col { display: block !important; width: auto !important; position: static !important; overflow: visible !important; padding: 0 !important; }
+  .scaler { zoom: 1 !important; transform: none !important; }
+  .paper { width: auto !important; padding: 0 !important; margin: 0 !important; box-shadow: none !important; }
+  .sheet { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+.sheet table.items th:first-child { padding-left: .6mm; padding-right: .6mm; white-space: nowrap; text-align: left; }

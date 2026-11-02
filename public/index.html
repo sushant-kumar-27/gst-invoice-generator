@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GST Invoice Generator</title>
+<link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="sheet.css">
+</head>
+<body>
+<header class="topbar no-print">
+  <div class="brand">GST Invoice</div>
+  <nav>
+    <a href="#/new" data-nav="new">New Invoice</a>
+    <a href="#/invoices" data-nav="invoices">Saved Invoices</a>
+    <a href="#/catalogue" data-nav="catalogue">Product Catalogue</a>
+    <a href="#/settings" data-nav="settings">Company Settings</a>
+  </nav>
+</header>
+<main id="view"></main>
+<div id="toast" class="toast no-print" hidden></div>
+<script src="calc.js"></script>
+<script src="invoice.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

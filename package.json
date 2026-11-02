@@ -1,0 +1,13 @@
+{
+  "name": "gst-invoice-generator",
+  "version": "1.0.0",
+  "description": "GST tax invoice generator (Tally-style layout) with SQLite storage",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --no-warnings server.js",
+    "test": "node --no-warnings test/run.js"
+  },
+  "engines": { "node": ">=22.13" },
+  "license": "UNLICENSED",
+  "private": true
+}
